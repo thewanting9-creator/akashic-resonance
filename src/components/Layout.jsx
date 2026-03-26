@@ -1,8 +1,10 @@
 import { Outlet, Link, useLocation } from "react-router-dom";
 import { Sparkles, Plus, Globe, User, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedBackground from "./AnimatedBackground";
+import AliasGate from "./AliasGate";
+import { base44 } from "@/api/base44Client";
 
 const NAV_ITEMS = [
   { path: "/", label: "Field", icon: Sparkles },
@@ -14,9 +16,22 @@ const NAV_ITEMS = [
 export default function Layout() {
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [needsAlias, setNeedsAlias] = useState(false);
+  const [userEmail, setUserEmail] = useState("");
+
+  useEffect(() => {
+    const check = async () => {
+      const me = await base44.auth.me();
+      setUserEmail(me.email);
+      const existing = await base44.entities.Participant.filter({ user_email: me.email }, "-created_date", 1);
+      if (existing.length === 0) setNeedsAlias(true);
+    };
+    check();
+  }, []);
 
   return (
     <div className="min-h-screen relative overflow-hidden">
+      {needsAlias && <AliasGate userEmail={userEmail} onComplete={() => setNeedsAlias(false)} />}
       <AnimatedBackground />
 
       {/* Ambient glow orbs */}

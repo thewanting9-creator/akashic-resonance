@@ -10,6 +10,8 @@ import Home from './pages/Home';
 import Inscribe from './pages/Inscribe';
 import Collective from './pages/Collective';
 import MyRecords from './pages/MyRecords';
+import HiddenArchitecture from './pages/HiddenArchitecture';
+import DeveloperGateway from './pages/DeveloperGateway';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -42,6 +44,8 @@ const AuthenticatedApp = () => {
         <Route path="/inscribe" element={<Inscribe />} />
         <Route path="/collective" element={<Collective />} />
         <Route path="/my-records" element={<MyRecords />} />
+        <Route path="/hidden-architecture" element={<HiddenArchitecture />} />
+        <Route path="/contribute" element={<DeveloperGateway />} />
         <Route path="*" element={<PageNotFound />} />
       </Route>
     </Routes>

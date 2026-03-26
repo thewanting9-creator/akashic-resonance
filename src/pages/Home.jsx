@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { base44 } from "@/api/base44Client";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Sparkles, ArrowRight, Globe, Waves } from "lucide-react";
+import { Sparkles, ArrowRight, Globe, Waves, Lock, GitBranch } from "lucide-react";
 import ResonanceOrb from "../components/ResonanceOrb";
 
 export default function Home() {
@@ -158,6 +158,67 @@ export default function Home() {
               )}
             </motion.div>
           )}
+        </div>
+      </section>
+
+      {/* Hidden Architecture + Contributor CTA */}
+      <section className="px-4 pb-24">
+        <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4">
+
+          {/* Hidden Architecture */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <Link to="/hidden-architecture" className="group block h-full">
+              <div className="relative h-full bg-card/30 backdrop-blur-md border border-border/30 rounded-2xl p-6 hover:border-amber-500/20 transition-all duration-500 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative">
+                  <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-amber-500/10 border border-amber-500/20 mb-4">
+                    <Lock className="w-4 h-4 text-amber-400" />
+                  </div>
+                  <h3 className="font-heading text-xl mb-2">Hidden Architecture</h3>
+                  <p className="font-body text-sm text-muted-foreground leading-relaxed">
+                    The living structure beneath the field. The Na33 grid, torus polarity, and the sovereign map of this system.
+                  </p>
+                  <div className="mt-4 text-xs text-amber-400/70 font-body flex items-center gap-1.5">
+                    <span>Access restricted</span>
+                    <ArrowRight className="w-3 h-3" />
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </motion.div>
+
+          {/* Contributor Gateway */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <Link to="/contribute" className="group block h-full">
+              <div className="relative h-full bg-card/30 backdrop-blur-md border border-border/30 rounded-2xl p-6 hover:border-violet-500/20 transition-all duration-500 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-violet-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative">
+                  <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-violet-500/10 border border-violet-500/20 mb-4">
+                    <GitBranch className="w-4 h-4 text-violet-400" />
+                  </div>
+                  <h3 className="font-heading text-xl mb-2">Become a Contributor</h3>
+                  <p className="font-body text-sm text-muted-foreground leading-relaxed">
+                    Serious participants may apply to help shape the path this system is heading toward. Open to those ready to serve the field.
+                  </p>
+                  <div className="mt-4 text-xs text-violet-400/70 font-body flex items-center gap-1.5">
+                    <span>Apply for access</span>
+                    <ArrowRight className="w-3 h-3" />
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </motion.div>
+
         </div>
       </section>
     </div>

@@ -1,0 +1,52 @@
+{
+  "name": "ResonanceForecast",
+  "type": "object",
+  "properties": {
+    "participant_id": {
+      "type": "string",
+      "description": "Reference to Participant atomic_consciousness_number"
+    },
+    "forecast": {
+      "type": "object",
+      "properties": {
+        "highProbabilityCorridors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Likely resonance corridors based on current field state"
+        },
+        "lowProbabilityPotentials": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Latent but possible trajectories"
+        },
+        "latentLines": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Dormant resonance lines not yet activated"
+        }
+      }
+    },
+    "ai_modes_used": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "ASTRONOMICAL",
+          "ASTROLOGICAL",
+          "PSYCHOLOGICAL",
+          "SHAMANIC",
+          "QUANTUM_LINES"
+        ]
+      }
+    }
+  },
+  "required": [
+    "participant_id"
+  ]
+}

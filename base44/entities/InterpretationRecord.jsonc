@@ -1,0 +1,67 @@
+{
+  "name": "InterpretationRecord",
+  "type": "object",
+  "properties": {
+    "participant_id": {
+      "type": "string",
+      "description": "Reference to Participant atomic_consciousness_number"
+    },
+    "context": {
+      "type": "object",
+      "properties": {
+        "na33Grid": {
+          "type": "string",
+          "description": "Reference to participant na33_grid snapshot"
+        },
+        "torusDomain": {
+          "type": "string",
+          "enum": [
+            "TOP",
+            "BOTTOM"
+          ]
+        },
+        "traitSnapshot": {
+          "type": "string",
+          "description": "Reference to trait state at time of interpretation"
+        },
+        "resonanceLines": {
+          "type": "string",
+          "description": "Reference to active resonance line data"
+        }
+      }
+    },
+    "interpretation": {
+      "type": "object",
+      "properties": {
+        "observation": {
+          "type": "string"
+        },
+        "symbolicMeaning": {
+          "type": "string"
+        },
+        "potentialPathways": {
+          "type": "string"
+        },
+        "nonDirectiveClosing": {
+          "type": "string"
+        }
+      }
+    },
+    "ai_modes_used": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "ASTRONOMICAL",
+          "ASTROLOGICAL",
+          "PSYCHOLOGICAL",
+          "SHAMANIC",
+          "QUANTUM_LINES"
+        ]
+      }
+    }
+  },
+  "required": [
+    "participant_id"
+  ]
+}

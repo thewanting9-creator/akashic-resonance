@@ -1,0 +1,55 @@
+{
+  "name": "CollectivePatternReport",
+  "type": "object",
+  "properties": {
+    "pattern_summary": {
+      "type": "string",
+      "description": "High-level summary of the collective pattern observed"
+    },
+    "emerging_themes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Themes surfacing across the collective field"
+    },
+    "resonance_clusters": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Identified clusters of resonance groupings"
+    },
+    "torus_balance": {
+      "type": "object",
+      "properties": {
+        "topTorusCount": {
+          "type": "number"
+        },
+        "bottomTorusCount": {
+          "type": "number"
+        }
+      }
+    },
+    "collective_trajectory": {
+      "type": "string",
+      "description": "AI-observed direction of the collective field"
+    },
+    "ai_modes_used": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "ASTRONOMICAL",
+          "ASTROLOGICAL",
+          "PSYCHOLOGICAL",
+          "SHAMANIC",
+          "QUANTUM_LINES"
+        ]
+      }
+    }
+  },
+  "required": [
+    "pattern_summary"
+  ]
+}

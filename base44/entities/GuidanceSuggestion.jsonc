@@ -1,0 +1,56 @@
+{
+  "name": "GuidanceSuggestion",
+  "type": "object",
+  "properties": {
+    "participant_id": {
+      "type": "string",
+      "description": "Reference to Participant atomic_consciousness_number"
+    },
+    "trigger": {
+      "type": "string",
+      "enum": [
+        "event",
+        "userRequest",
+        "resonanceShift"
+      ],
+      "description": "What triggered this guidance"
+    },
+    "suggestion": {
+      "type": "object",
+      "properties": {
+        "theme": {
+          "type": "string"
+        },
+        "symbolicFrame": {
+          "type": "string"
+        },
+        "optionalDirections": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "closing": {
+          "type": "string"
+        }
+      }
+    },
+    "ai_modes_used": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "ASTRONOMICAL",
+          "ASTROLOGICAL",
+          "PSYCHOLOGICAL",
+          "SHAMANIC",
+          "QUANTUM_LINES"
+        ]
+      }
+    }
+  },
+  "required": [
+    "participant_id",
+    "trigger"
+  ]
+}

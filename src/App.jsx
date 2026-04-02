@@ -12,6 +12,7 @@ import Collective from './pages/Collective';
 import MyRecords from './pages/MyRecords';
 import HiddenArchitecture from './pages/HiddenArchitecture';
 import DeveloperGateway from './pages/DeveloperGateway';
+import ResonanceDashboard from './pages/ResonanceDashboard';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -46,6 +47,7 @@ const AuthenticatedApp = () => {
         <Route path="/my-records" element={<MyRecords />} />
         <Route path="/hidden-architecture" element={<HiddenArchitecture />} />
         <Route path="/contribute" element={<DeveloperGateway />} />
+        <Route path="/resonance-dashboard" element={<ResonanceDashboard />} />
         <Route path="*" element={<PageNotFound />} />
       </Route>
     </Routes>

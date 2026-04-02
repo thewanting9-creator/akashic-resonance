@@ -16,6 +16,7 @@ import ResonanceDashboard from './pages/ResonanceDashboard';
 import ResonanceField from './pages/ResonanceField';
 import ResonanceComparison from './pages/ResonanceComparison';
 import ResonanceNetwork from './pages/ResonanceNetwork';
+import MyResonance from './pages/MyResonance';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -54,6 +55,7 @@ const AuthenticatedApp = () => {
         <Route path="/resonance-field" element={<ResonanceField />} />
         <Route path="/resonance-comparison" element={<ResonanceComparison />} />
         <Route path="/resonance-network" element={<ResonanceNetwork />} />
+        <Route path="/my-resonance" element={<MyResonance />} />
         <Route path="*" element={<PageNotFound />} />
       </Route>
     </Routes>

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Sparkles, ArrowRight, Globe, Waves, Lock, GitBranch } from "lucide-react";
 import ResonanceOrb from "../components/ResonanceOrb";
+import LiveFeed from "../components/LiveFeed";
 
 export default function Home() {
   const [records, setRecords] = useState([]);
@@ -158,6 +159,13 @@ export default function Home() {
               )}
             </motion.div>
           )}
+        </div>
+      </section>
+
+      {/* Live Feed */}
+      <section className="px-4 pb-10">
+        <div className="max-w-3xl mx-auto">
+          <LiveFeed />
         </div>
       </section>
 

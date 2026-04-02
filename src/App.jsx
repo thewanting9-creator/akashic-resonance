@@ -14,6 +14,7 @@ import HiddenArchitecture from './pages/HiddenArchitecture';
 import DeveloperGateway from './pages/DeveloperGateway';
 import ResonanceDashboard from './pages/ResonanceDashboard';
 import ResonanceField from './pages/ResonanceField';
+import ResonanceComparison from './pages/ResonanceComparison';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -50,6 +51,7 @@ const AuthenticatedApp = () => {
         <Route path="/contribute" element={<DeveloperGateway />} />
         <Route path="/resonance-dashboard" element={<ResonanceDashboard />} />
         <Route path="/resonance-field" element={<ResonanceField />} />
+        <Route path="/resonance-comparison" element={<ResonanceComparison />} />
         <Route path="*" element={<PageNotFound />} />
       </Route>
     </Routes>

@@ -1,0 +1,108 @@
+{
+  "name": "FieldSoundscape",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "User-given title for this soundscape"
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional description or intention behind this composition"
+    },
+    "audio_url": {
+      "type": "string",
+      "description": "URL to the recorded audio file"
+    },
+    "duration_seconds": {
+      "type": "number",
+      "description": "Length of the recording in seconds"
+    },
+    "layers_config": {
+      "type": "object",
+      "description": "Snapshot of active layer settings at time of recording",
+      "properties": {
+        "sr_tone": {
+          "type": "object"
+        },
+        "ulf_rumble": {
+          "type": "object"
+        },
+        "gci_pulse": {
+          "type": "object"
+        },
+        "cosmic_pad": {
+          "type": "object"
+        },
+        "static_rain": {
+          "type": "object"
+        }
+      }
+    },
+    "live_data_snapshot": {
+      "type": "object",
+      "description": "Live SR/ULF/GCI readings at time of composition",
+      "properties": {
+        "sr_mode": {
+          "type": "number"
+        },
+        "sr_hz": {
+          "type": "number"
+        },
+        "sr_power_pt": {
+          "type": "number"
+        },
+        "ulf_power": {
+          "type": "number"
+        },
+        "gci_index": {
+          "type": "number"
+        }
+      }
+    },
+    "mood_tag": {
+      "type": "string",
+      "enum": [
+        "calm",
+        "creative",
+        "focused",
+        "inspired",
+        "flow",
+        "grateful",
+        "insight",
+        "heightened"
+      ]
+    },
+    "frequency_channel": {
+      "type": "string",
+      "enum": [
+        "unity",
+        "creation",
+        "transformation",
+        "healing",
+        "awakening",
+        "remembrance",
+        "vision",
+        "connection"
+      ]
+    },
+    "play_count": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of times this soundscape has been played by others"
+    },
+    "atomic_id": {
+      "type": "string",
+      "description": "Composer's Atomic Resonance ID (privacy-safe)"
+    },
+    "is_public": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether this appears in the collective feed"
+    }
+  },
+  "required": [
+    "title",
+    "audio_url"
+  ]
+}

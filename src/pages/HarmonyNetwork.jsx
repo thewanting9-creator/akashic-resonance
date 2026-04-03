@@ -265,6 +265,17 @@ export default function HarmonyNetwork() {
       sr_mode: sr.mode,
       linked_node_ids: [],
     });
+    // Archive join event
+    base44.entities.ResonanceArchive.create({
+      snapshot_type: "harmony_node_session",
+      timestamp: new Date().toISOString(),
+      sr_mode: sr.mode,
+      sr_hz: sr.hz,
+      frequency_channel: form.frequency,
+      atomic_id: participant.atomic_consciousness_number,
+      session_type: "harmony",
+      harmony_data: { node_id: node.id, session_id: sessionId, base_score: form.resonance_score, amplified_score: form.resonance_score, linked_count: 0, event: "join" },
+    }).catch(() => {});
     setMyNode(node);
     setJoining(false);
   };
@@ -272,6 +283,18 @@ export default function HarmonyNetwork() {
   const handleLeave = async () => {
     if (!myNode) return;
     await base44.entities.HarmonyNode.update(myNode.id, { status: "inactive" });
+    // Archive leave event
+    const finalAmp = nodes.find(n => n.id === myNode.id)?.amplified_score || myNode.resonance_score;
+    base44.entities.ResonanceArchive.create({
+      snapshot_type: "harmony_node_session",
+      timestamp: new Date().toISOString(),
+      sr_mode: myNode.sr_mode,
+      frequency_channel: myNode.frequency,
+      atomic_id: myNode.atomic_id,
+      session_type: "harmony",
+      resonance_score: finalAmp,
+      harmony_data: { node_id: myNode.id, session_id: myNode.session_id, base_score: myNode.resonance_score, amplified_score: finalAmp, linked_count: myLinked.length, event: "leave" },
+    }).catch(() => {});
     setMyNode(null);
   };
 

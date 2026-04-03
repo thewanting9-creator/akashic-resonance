@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import { base44 } from "@/api/base44Client";
 import { motion, AnimatePresence } from "framer-motion";
 import { Zap, X, Bell, BellOff } from "lucide-react";
 
@@ -41,6 +42,16 @@ export default function SRAlertBanner() {
         lastSurge.current = Date.now();
         setAlert(sr);
         setHistory(h => [{ ...sr, ts: new Date().toLocaleTimeString() }, ...h].slice(0, 8));
+        // Archive the SR peak event
+        base44.entities.ResonanceArchive.create({
+          snapshot_type: "sr_peak_alert",
+          timestamp: new Date().toISOString(),
+          sr_mode: sr.mode,
+          sr_hz: sr.hz,
+          sr_power_pt: sr.power,
+          sr_peak_data: { peak_hz: sr.hz, peak_power: sr.power, is_surge: true, alert_mode: sr.mode },
+          notes: `Automatic SR peak alert: M${sr.mode} @ ${sr.hz} Hz · ${sr.power} pT`,
+        }).catch(() => {});
         // Play subtle chime
         try {
           const ctx = new (window.AudioContext || window.webkitAudioContext)();

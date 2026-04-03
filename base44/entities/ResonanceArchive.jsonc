@@ -18,7 +18,14 @@
         "binaural_session",
         "intention_circle",
         "astro_lab",
-        "collective_pattern"
+        "collective_pattern",
+        "harmony_node_session",
+        "sr_peak_alert",
+        "hotspot_visit",
+        "synesthesia_session",
+        "field_radio_session",
+        "soundscape_session",
+        "atmospheric_composer"
       ],
       "description": "Type of archived event"
     },
@@ -97,9 +104,101 @@
         }
       }
     },
+    "sr_peak_data": {
+      "type": "object",
+      "description": "Extra fields captured during SR peak alert events",
+      "properties": {
+        "peak_hz": {
+          "type": "number",
+          "description": "Peak SR frequency recorded"
+        },
+        "peak_power": {
+          "type": "number",
+          "description": "Peak power in pT at alert trigger"
+        },
+        "is_surge": {
+          "type": "boolean"
+        },
+        "alert_mode": {
+          "type": "number",
+          "description": "SR mode at surge"
+        }
+      }
+    },
+    "harmony_data": {
+      "type": "object",
+      "description": "Harmony Network session metadata",
+      "properties": {
+        "node_id": {
+          "type": "string"
+        },
+        "session_id": {
+          "type": "string"
+        },
+        "base_score": {
+          "type": "number"
+        },
+        "amplified_score": {
+          "type": "number"
+        },
+        "linked_count": {
+          "type": "number"
+        },
+        "event": {
+          "type": "string",
+          "enum": [
+            "join",
+            "leave",
+            "link_update"
+          ]
+        }
+      }
+    },
+    "hotspot_data": {
+      "type": "object",
+      "description": "Hotspot Map interaction metadata",
+      "properties": {
+        "region_id": {
+          "type": "string"
+        },
+        "region_label": {
+          "type": "string"
+        },
+        "local_sr_hz": {
+          "type": "number"
+        },
+        "density": {
+          "type": "number"
+        },
+        "coherence_pct": {
+          "type": "number"
+        }
+      }
+    },
+    "session_meta": {
+      "type": "object",
+      "description": "General session metadata for engine/radio/composer sessions",
+      "properties": {
+        "duration_seconds": {
+          "type": "number"
+        },
+        "engine_channel": {
+          "type": "string"
+        },
+        "auto_tune_active": {
+          "type": "boolean"
+        },
+        "station_key": {
+          "type": "string"
+        },
+        "soundscape_title": {
+          "type": "string"
+        }
+      }
+    },
     "source_record_id": {
       "type": "string",
-      "description": "ID of the originating entity record (ResonanceRecord, PulseCheckIn, etc.)"
+      "description": "ID of the originating entity record"
     },
     "atomic_id": {
       "type": "string",
@@ -107,11 +206,11 @@
     },
     "session_type": {
       "type": "string",
-      "description": "Session context: solo, circle, binaural, photic, lab"
+      "description": "Session context: solo, circle, binaural, photic, lab, harmony, radio, synesthesia"
     },
     "geo_node": {
       "type": "string",
-      "description": "Named geographic node if applicable (from globe regions)"
+      "description": "Named geographic node if applicable"
     },
     "notes": {
       "type": "string",

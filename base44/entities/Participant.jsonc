@@ -1,0 +1,157 @@
+{
+  "name": "Participant",
+  "type": "object",
+  "properties": {
+    "alias": {
+      "type": "string",
+      "description": "Sign-in format: MM/DD/YYYY+Alias e.g. 02111983Walt"
+    },
+    "atomic_consciousness_number": {
+      "type": "string",
+      "description": "Unique non-repeating random identifier. Immutable after assignment."
+    },
+    "torus_domain": {
+      "type": "string",
+      "enum": [
+        "TOP",
+        "BOTTOM"
+      ],
+      "description": "Immutable torus polarity assigned at initialization"
+    },
+    "user_email": {
+      "type": "string",
+      "description": "Linked auth account email"
+    },
+    "na33_grid": {
+      "type": "object",
+      "description": "The participant's full Na33 grid structure",
+      "properties": {
+        "outer_collective_traits": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "group_structured_traits": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "personal_traits": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "outer_ring_of_nothingness": {
+          "type": "object"
+        },
+        "center_vortex": {
+          "type": "object"
+        }
+      }
+    },
+    "first_pulse_chart": {
+      "type": "object",
+      "description": "AI-generated First-Pulse chart pack. Birth data is deleted after this is populated.",
+      "properties": {
+        "generated_at": {
+          "type": "string",
+          "description": "ISO timestamp of generation"
+        },
+        "birth_location_label": {
+          "type": "string",
+          "description": "City/region label only \u2014 no coordinates stored"
+        },
+        "birth_time_label": {
+          "type": "string",
+          "description": "Time-of-day label only (morning/afternoon/night/unknown)"
+        },
+        "summary": {
+          "type": "string",
+          "description": "Overall First-Pulse narrative"
+        },
+        "triple_self": {
+          "type": "object",
+          "description": "Triple Self Convergence interpretation"
+        },
+        "uranian": {
+          "type": "object",
+          "description": "Uranian 90/45 chart key themes"
+        },
+        "esoteric_rays": {
+          "type": "object",
+          "description": "Seven Rays soul/personality overlay"
+        },
+        "nine_personas": {
+          "type": "object",
+          "description": "9 Personas core archetypes"
+        },
+        "specialty_convergence": {
+          "type": "object",
+          "description": "Angles + Elements + Modalities synthesis"
+        },
+        "resonance_baseline": {
+          "type": "object",
+          "description": "Extracted resonance anchors for ongoing SR correlation",
+          "properties": {
+            "dominant_frequency": {
+              "type": "string"
+            },
+            "dominant_emotion": {
+              "type": "string"
+            },
+            "schumann_affinity": {
+              "type": "number",
+              "description": "Most resonant Schumann mode (1-8)"
+            },
+            "key_archetypes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "emergence_timestamp": {
+      "type": "string",
+      "description": "ISO timestamp of first pulse completion \u2014 permanently anchored in collective field"
+    },
+    "birth_data_deleted": {
+      "type": "boolean",
+      "default": false,
+      "description": "True once birth data has been wiped post First-Pulse generation"
+    },
+    "triple_self_chart_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "deactivated"
+      ],
+      "default": "active"
+    },
+    "is_seed": {
+      "type": "boolean",
+      "default": false
+    },
+    "seed_type": {
+      "type": "string",
+      "enum": [
+        "architect",
+        "system",
+        "demo"
+      ]
+    }
+  },
+  "required": [
+    "alias",
+    "atomic_consciousness_number",
+    "torus_domain"
+  ]
+}

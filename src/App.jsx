@@ -19,6 +19,8 @@ import ResonanceNetwork from './pages/ResonanceNetwork';
 import MyResonance from './pages/MyResonance';
 import BinauralStudio from './pages/BinauralStudio';
 import PulseCheckIn from './pages/PulseCheckIn';
+import FirstPulse from './pages/FirstPulse';
+import AstroResonanceLab from './pages/AstroResonanceLab';
 import IntentionCircles from './pages/IntentionCircles';
 
 const AuthenticatedApp = () => {
@@ -62,6 +64,8 @@ const AuthenticatedApp = () => {
         <Route path="/binaural-studio" element={<BinauralStudio />} />
         <Route path="/pulse" element={<PulseCheckIn />} />
         <Route path="/intention-circles" element={<IntentionCircles />} />
+        <Route path="/first-pulse" element={<FirstPulse />} />
+        <Route path="/astro-lab" element={<AstroResonanceLab />} />
         <Route path="*" element={<PageNotFound />} />
       </Route>
     </Routes>

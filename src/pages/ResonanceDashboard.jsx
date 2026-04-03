@@ -3,6 +3,7 @@ import { base44 } from "@/api/base44Client";
 import { motion } from "framer-motion";
 import { BarChart2, Loader2, RefreshCw } from "lucide-react";
 import TorusBalanceGauge from "../components/dashboard/TorusBalanceGauge";
+import SchumannPanel from "../components/resonance/SchumannPanel";
 import PatternClusterHeatmap from "../components/dashboard/PatternClusterHeatmap";
 import ThemeEvolutionChart from "../components/dashboard/ThemeEvolutionChart";
 
@@ -129,8 +130,13 @@ export default function ResonanceDashboard() {
       </motion.div>
 
       {/* Time-series */}
-      <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}>
+      <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }} className="mb-4">
         <ThemeEvolutionChart records={records} />
+      </motion.div>
+
+      {/* Schumann */}
+      <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
+        <SchumannPanel collective dominantFreq={records[0]?.frequency} />
       </motion.div>
     </div>
   );

@@ -3,6 +3,7 @@ import { base44 } from "@/api/base44Client";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, Download, Loader2, X, BookOpen } from "lucide-react";
 import PersonalCalendar from "../components/resonance/PersonalCalendar";
+import SchumannPanel from "../components/resonance/SchumannPanel";
 import FrequencyTrends from "../components/resonance/FrequencyTrends";
 
 const FREQ_COLORS = {
@@ -198,6 +199,11 @@ export default function MyResonance() {
               </motion.div>
             )}
           </AnimatePresence>
+
+          {/* Schumann alignment */}
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="mb-6">
+            <SchumannPanel dominantFreq={stats.topFreq} depth={records[0]?.depth} />
+          </motion.div>
 
           {/* Recent records list */}
           <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}

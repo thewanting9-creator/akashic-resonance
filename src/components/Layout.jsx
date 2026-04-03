@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { Sparkles, Plus, Globe, User, Menu, X, Heart, Headphones, BarChart2, GitBranch, MoreHorizontal, Users, BookOpen, GitCompare, Network, FlaskConical } from "lucide-react";
+import { Sparkles, Plus, Globe, User, Menu, X, Heart, Headphones, BarChart2, GitBranch, MoreHorizontal, Users, BookOpen, GitCompare, Network, FlaskConical, Activity } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedBackground from "./AnimatedBackground";
@@ -24,6 +24,7 @@ const SECONDARY_NAV = [
   { path: "/resonance-field",     label: "Globe Map",       icon: Globe },
   { path: "/resonance-network",   label: "Network",         icon: Network },
   { path: "/resonance-globe",       label: "3D Globe",        icon: Globe },
+  { path: "/frequency-monitor",     label: "Freq Monitor",    icon: Activity },
   { path: "/resonance-comparison",label: "Comparison",      icon: GitCompare },
   { path: "/first-pulse",         label: "First Pulse",     icon: Sparkles },
   { path: "/astro-lab",           label: "Astro Lab",       icon: FlaskConical },

@@ -23,6 +23,7 @@ import FirstPulse from './pages/FirstPulse';
 import AstroResonanceLab from './pages/AstroResonanceLab';
 import IntentionCircles from './pages/IntentionCircles';
 import ResonanceGlobe3D from './pages/ResonanceGlobe3D';
+import FrequencyMonitor from './pages/FrequencyMonitor';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -66,6 +67,7 @@ const AuthenticatedApp = () => {
         <Route path="/pulse" element={<PulseCheckIn />} />
         <Route path="/intention-circles" element={<IntentionCircles />} />
         <Route path="/resonance-globe" element={<ResonanceGlobe3D />} />
+        <Route path="/frequency-monitor" element={<FrequencyMonitor />} />
         <Route path="/first-pulse" element={<FirstPulse />} />
         <Route path="/astro-lab" element={<AstroResonanceLab />} />
         <Route path="*" element={<PageNotFound />} />

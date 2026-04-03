@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Play, Square, Info, X, Headphones, Zap } from "lucide-react";
+import { Play, Square, Info, X, Headphones, Zap, Eye } from "lucide-react";
+import PhotonicFlicker from "../components/studio/PhotonicFlicker";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ReferenceLine, ResponsiveContainer, Cell } from "recharts";
 import { BINAURAL_DATA } from "../lib/binauralData";
 
@@ -74,6 +75,7 @@ const chartData = BINAURAL_DATA.presets.map(p => ({
 }));
 
 export default function BinauralStudio() {
+  const [tab,      setTab]      = useState("binaural");
   const [carrier,  setCarrier]  = useState(250);
   const [beat,     setBeat]     = useState(7.83);
   const [volume,   setVolume]   = useState(65);
@@ -82,10 +84,8 @@ export default function BinauralStudio() {
   const [infoOpen, setInfoOpen] = useState(false);
   const [elapsed,  setElapsed]  = useState(0);
   const [duration, setDuration] = useState(15);
-  const timerRef   = useRef(null);
+  const timerRef = useRef(null);
   const { start, stop } = useBinauralEngine();
-
-  const activePreset = BINAURAL_DATA.presets.find(p => Math.abs(p.beat - beat) < 0.05 && p.carrier === carrier);
 
   const handlePlay = () => {
     if (playing) {
@@ -122,6 +122,8 @@ export default function BinauralStudio() {
   const fmtTime = s => `${Math.floor(s/60)}:${String(s%60).padStart(2,"0")}`;
   const progress = playing ? (elapsed / (duration * 60)) * 100 : 0;
 
+  const activePreset = BINAURAL_DATA.presets.find(p => Math.abs(p.beat - beat) < 0.05 && p.carrier === carrier);
+
   return (
     <div className="max-w-5xl mx-auto px-4 py-10 min-h-screen">
       {/* Header */}
@@ -151,8 +153,25 @@ export default function BinauralStudio() {
             </motion.div>
           )}
         </AnimatePresence>
+
+        {/* Tabs */}
+        <div className="flex gap-1 mt-4 bg-card/20 border border-border/20 rounded-xl p-1 w-fit">
+          <button onClick={() => setTab("binaural")}
+            className={`px-4 py-1.5 rounded-lg text-xs font-body transition-all flex items-center gap-1.5 ${
+              tab === "binaural" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
+            }`}>
+            <Headphones className="w-3 h-3" /> Binaural
+          </button>
+          <button onClick={() => setTab("photic")}
+            className={`px-4 py-1.5 rounded-lg text-xs font-body transition-all flex items-center gap-1.5 ${
+              tab === "photic" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
+            }`}>
+            <Eye className="w-3 h-3" /> Photic Flicker
+          </button>
+        </div>
       </motion.div>
 
+      {tab === "binaural" && (
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
 
         {/* Left: Presets */}
@@ -277,11 +296,11 @@ export default function BinauralStudio() {
           <div className="mt-auto pt-4 space-y-1.5">
             <div className="text-[10px] font-body text-muted-foreground/50 uppercase tracking-wide mb-2">Brainwave Reference</div>
             {[
-              { band: "Delta", range: "0.5–4 Hz", color: "#94a3b8" },
-              { band: "Theta", range: "4–8 Hz",   color: "#34d399" },
-              { band: "Alpha", range: "8–13 Hz",  color: "#60a5fa" },
-              { band: "Beta",  range: "13–30 Hz", color: "#a78bfa" },
-              { band: "Gamma", range: "30–100+ Hz", color: "#fbbf24" },
+              { band: "Delta", range: "0.5–4 Hz",   color: "#94a3b8" },
+              { band: "Theta", range: "4–8 Hz",     color: "#34d399" },
+              { band: "Alpha", range: "8–13 Hz",    color: "#60a5fa" },
+              { band: "Beta",  range: "13–30 Hz",   color: "#a78bfa" },
+              { band: "Gamma", range: "30–100+ Hz",  color: "#fbbf24" },
             ].map(b => (
               <div key={b.band} className="flex items-center justify-between text-[10px] font-body">
                 <div className="flex items-center gap-1.5">
@@ -294,6 +313,14 @@ export default function BinauralStudio() {
           </div>
         </motion.div>
       </div>
+      )}
+
+      {tab === "photic" && (
+        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
+          className="max-w-md mx-auto bg-card/30 backdrop-blur-md border border-border/30 rounded-2xl p-6">
+          <PhotonicFlicker srHz={beat} />
+        </motion.div>
+      )}
     </div>
   );
 }

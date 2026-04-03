@@ -26,6 +26,7 @@ import ResonanceGlobe3D from './pages/ResonanceGlobe3D';
 import FrequencyMonitor from './pages/FrequencyMonitor';
 import Resonance4D from './pages/Resonance4D';
 import AtmosphericComposer from './pages/AtmosphericComposer';
+import ResonanceMastery from './pages/ResonanceMastery';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -73,6 +74,7 @@ const AuthenticatedApp = () => {
         <Route path="/first-pulse" element={<FirstPulse />} />
         <Route path="/resonance-4d" element={<Resonance4D />} />
         <Route path="/atmospheric-composer" element={<AtmosphericComposer />} />
+        <Route path="/resonance-mastery" element={<ResonanceMastery />} />
         <Route path="/astro-lab" element={<AstroResonanceLab />} />
         <Route path="*" element={<PageNotFound />} />
       </Route>

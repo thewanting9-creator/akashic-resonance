@@ -1,0 +1,95 @@
+{
+  "name": "ResonanceMastery",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string",
+      "description": "Linked user account email"
+    },
+    "atomic_id": {
+      "type": "string",
+      "description": "Atomic Resonance ID (privacy-safe)"
+    },
+    "channel_minutes": {
+      "type": "object",
+      "description": "Cumulative minutes spent in each frequency channel",
+      "properties": {
+        "unity": {
+          "type": "number",
+          "default": 0
+        },
+        "creation": {
+          "type": "number",
+          "default": 0
+        },
+        "transformation": {
+          "type": "number",
+          "default": 0
+        },
+        "healing": {
+          "type": "number",
+          "default": 0
+        },
+        "awakening": {
+          "type": "number",
+          "default": 0
+        },
+        "remembrance": {
+          "type": "number",
+          "default": 0
+        },
+        "vision": {
+          "type": "number",
+          "default": 0
+        },
+        "connection": {
+          "type": "number",
+          "default": 0
+        }
+      }
+    },
+    "unlocked_badges": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "IDs of unlocked frequency badges"
+    },
+    "total_session_minutes": {
+      "type": "number",
+      "default": 0,
+      "description": "Total time across all sessions"
+    },
+    "coherence_scores": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string"
+          },
+          "score": {
+            "type": "number"
+          }
+        }
+      },
+      "description": "Historical coherence score snapshots"
+    },
+    "avg_coherence": {
+      "type": "number",
+      "description": "Running average coherence score (0\u2013100)"
+    },
+    "streak_days": {
+      "type": "number",
+      "default": 0,
+      "description": "Current consecutive daily activity streak"
+    },
+    "last_active_date": {
+      "type": "string",
+      "description": "ISO date of last recorded session"
+    }
+  },
+  "required": [
+    "user_email"
+  ]
+}

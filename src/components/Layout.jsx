@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { Sparkles, Plus, Globe, User, Menu, X, Heart, Headphones, BarChart2, GitBranch, MoreHorizontal, Users, BookOpen, GitCompare, Network, FlaskConical, Activity } from "lucide-react";
+import { Sparkles, Plus, Globe, User, Menu, X, Heart, Headphones, BarChart2, GitBranch, MoreHorizontal, Users, BookOpen, GitCompare, Network, FlaskConical, Activity, Waves } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedBackground from "./AnimatedBackground";
@@ -8,28 +8,26 @@ import { base44 } from "@/api/base44Client";
 
 // Primary nav — always visible
 const PRIMARY_NAV = [
-  { path: "/",                 label: "Field",     icon: Sparkles },
-  { path: "/pulse",            label: "Pulse",     icon: Heart },
-  { path: "/binaural-studio",  label: "Studio",    icon: Headphones },
-  { path: "/collective",       label: "Collective",icon: Globe },
-  { path: "/inscribe",         label: "Inscribe",  icon: Plus },
+  { path: "/",                  label: "Control",   icon: Sparkles },
+  { path: "/pulse",             label: "Pulse",     icon: Heart },
+  { path: "/binaural-studio",   label: "Studio",    icon: Headphones },
+  { path: "/resonance-globe",   label: "Globe",     icon: Globe },
+  { path: "/frequency-monitor", label: "Monitor",   icon: Activity },
 ];
 
-// Secondary nav — in "More" dropdown
 const SECONDARY_NAV = [
-  { path: "/my-resonance",        label: "My Resonance",    icon: User },
-  { path: "/my-records",          label: "My Records",      icon: BookOpen },
-  { path: "/intention-circles",   label: "Circles",         icon: Users },
-  { path: "/resonance-dashboard", label: "Dashboard",       icon: BarChart2 },
-  { path: "/resonance-field",     label: "Globe Map",       icon: Globe },
-  { path: "/resonance-network",   label: "Network",         icon: Network },
-  { path: "/resonance-globe",       label: "3D Globe",        icon: Globe },
-  { path: "/frequency-monitor",     label: "Freq Monitor",    icon: Activity },
-  { path: "/resonance-comparison",label: "Comparison",      icon: GitCompare },
-  { path: "/first-pulse",         label: "First Pulse",     icon: Sparkles },
-  { path: "/astro-lab",           label: "Astro Lab",       icon: FlaskConical },
-  { path: "/hidden-architecture", label: "Architecture",    icon: GitBranch },
-  { path: "/contribute",          label: "Contribute",      icon: Plus },
+  { path: "/collective",          label: "Collective Feed",   icon: Waves },
+  { path: "/inscribe",            label: "Inscribe",          icon: Plus },
+  { path: "/intention-circles",   label: "Circles",           icon: Users },
+  { path: "/first-pulse",         label: "First Pulse",       icon: Sparkles },
+  { path: "/astro-lab",           label: "Astro Lab",         icon: FlaskConical },
+  { path: "/my-resonance",        label: "My Resonance",      icon: User },
+  { path: "/my-records",          label: "My Records",        icon: BookOpen },
+  { path: "/resonance-dashboard", label: "Dashboard",         icon: BarChart2 },
+  { path: "/resonance-network",   label: "Network",           icon: Network },
+  { path: "/resonance-comparison",label: "Comparison",        icon: GitCompare },
+  { path: "/hidden-architecture", label: "Architecture",      icon: GitBranch },
+  { path: "/contribute",          label: "Contribute",        icon: Plus },
 ];
 
 export default function Layout() {

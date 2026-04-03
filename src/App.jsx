@@ -27,6 +27,7 @@ import FrequencyMonitor from './pages/FrequencyMonitor';
 import Resonance4D from './pages/Resonance4D';
 import AtmosphericComposer from './pages/AtmosphericComposer';
 import ResonanceMastery from './pages/ResonanceMastery';
+import CollectiveFieldRadio from './pages/CollectiveFieldRadio';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -75,6 +76,7 @@ const AuthenticatedApp = () => {
         <Route path="/resonance-4d" element={<Resonance4D />} />
         <Route path="/atmospheric-composer" element={<AtmosphericComposer />} />
         <Route path="/resonance-mastery" element={<ResonanceMastery />} />
+        <Route path="/field-radio" element={<CollectiveFieldRadio />} />
         <Route path="/astro-lab" element={<AstroResonanceLab />} />
         <Route path="*" element={<PageNotFound />} />
       </Route>

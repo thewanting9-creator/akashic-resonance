@@ -23,6 +23,7 @@ const SECONDARY_NAV = [
   { path: "/resonance-dashboard", label: "Dashboard",       icon: BarChart2 },
   { path: "/resonance-field",     label: "Globe Map",       icon: Globe },
   { path: "/resonance-network",   label: "Network",         icon: Network },
+  { path: "/resonance-globe",       label: "3D Globe",        icon: Globe },
   { path: "/resonance-comparison",label: "Comparison",      icon: GitCompare },
   { path: "/first-pulse",         label: "First Pulse",     icon: Sparkles },
   { path: "/astro-lab",           label: "Astro Lab",       icon: FlaskConical },

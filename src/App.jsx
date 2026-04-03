@@ -17,6 +17,7 @@ import ResonanceField from './pages/ResonanceField';
 import ResonanceComparison from './pages/ResonanceComparison';
 import ResonanceNetwork from './pages/ResonanceNetwork';
 import MyResonance from './pages/MyResonance';
+import BinauralStudio from './pages/BinauralStudio';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -56,6 +57,7 @@ const AuthenticatedApp = () => {
         <Route path="/resonance-comparison" element={<ResonanceComparison />} />
         <Route path="/resonance-network" element={<ResonanceNetwork />} />
         <Route path="/my-resonance" element={<MyResonance />} />
+        <Route path="/binaural-studio" element={<BinauralStudio />} />
         <Route path="*" element={<PageNotFound />} />
       </Route>
     </Routes>

@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { Sparkles, Plus, Globe, User, Menu, X, Heart, Headphones, BarChart2, GitBranch, MoreHorizontal, Users, BookOpen, GitCompare, Network, FlaskConical, Activity, Waves, Clock, Wind, Award, Radio } from "lucide-react";
+import { Sparkles, Plus, Globe, User, Menu, X, Heart, Headphones, BarChart2, GitBranch, MoreHorizontal, Users, BookOpen, GitCompare, Network, FlaskConical, Activity, Waves, Clock, Wind, Award, Radio, Palette } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedBackground from "./AnimatedBackground";
@@ -32,6 +32,7 @@ const SECONDARY_NAV = [
   { path: "/atmospheric-composer", label: "Composer",          icon: Wind },
   { path: "/resonance-mastery",    label: "Mastery",           icon: Award },
   { path: "/field-radio",          label: "Field Radio",       icon: Radio },
+  { path: "/synesthesia",          label: "Synesthesia",       icon: Palette },
 ];
 
 export default function Layout() {

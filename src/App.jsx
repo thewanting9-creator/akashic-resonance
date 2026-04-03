@@ -29,6 +29,7 @@ import AtmosphericComposer from './pages/AtmosphericComposer';
 import ResonanceMastery from './pages/ResonanceMastery';
 import CollectiveFieldRadio from './pages/CollectiveFieldRadio';
 import SynesthesiaEngine from './pages/SynesthesiaEngine';
+import ResonanceHotspotMap from './pages/ResonanceHotspotMap';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -79,6 +80,7 @@ const AuthenticatedApp = () => {
         <Route path="/resonance-mastery" element={<ResonanceMastery />} />
         <Route path="/field-radio" element={<CollectiveFieldRadio />} />
         <Route path="/synesthesia" element={<SynesthesiaEngine />} />
+        <Route path="/hotspot-map" element={<ResonanceHotspotMap />} />
         <Route path="/astro-lab" element={<AstroResonanceLab />} />
         <Route path="*" element={<PageNotFound />} />
       </Route>

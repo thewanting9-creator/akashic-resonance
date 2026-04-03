@@ -1,0 +1,80 @@
+{
+  "name": "HarmonyNode",
+  "type": "object",
+  "properties": {
+    "atomic_id": {
+      "type": "string",
+      "description": "Participant's Atomic Resonance ID"
+    },
+    "alias": {
+      "type": "string",
+      "description": "Display alias for this node"
+    },
+    "frequency": {
+      "type": "string",
+      "enum": [
+        "unity",
+        "creation",
+        "transformation",
+        "healing",
+        "awakening",
+        "remembrance",
+        "vision",
+        "connection"
+      ]
+    },
+    "emotion": {
+      "type": "string",
+      "enum": [
+        "love",
+        "wonder",
+        "peace",
+        "joy",
+        "gratitude",
+        "clarity",
+        "longing",
+        "awe",
+        "compassion",
+        "transcendence"
+      ]
+    },
+    "resonance_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Current session coherence score"
+    },
+    "amplified_score": {
+      "type": "number",
+      "description": "Score after network amplification from linked nodes"
+    },
+    "linked_node_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "IDs of HarmonyNodes this node is linked to"
+    },
+    "session_id": {
+      "type": "string",
+      "description": "Active session identifier"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "inactive"
+      ],
+      "default": "active"
+    },
+    "sr_mode": {
+      "type": "number",
+      "description": "Schumann mode active during this node session"
+    }
+  },
+  "required": [
+    "atomic_id",
+    "frequency",
+    "resonance_score"
+  ]
+}

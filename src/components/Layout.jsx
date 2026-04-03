@@ -34,6 +34,7 @@ const SECONDARY_NAV = [
   { path: "/field-radio",          label: "Field Radio",       icon: Radio },
   { path: "/synesthesia",          label: "Synesthesia",       icon: Palette },
   { path: "/hotspot-map",          label: "Hotspot Map",       icon: MapPin },
+  { path: "/harmony-network",      label: "Harmony Network",  icon: GitBranch },
 ];
 
 export default function Layout() {

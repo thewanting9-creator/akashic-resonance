@@ -3,6 +3,7 @@ import { Sparkles, Plus, Globe, User, Menu, X, Heart, Headphones, BarChart2, Git
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedBackground from "./AnimatedBackground";
+import SRAlertBanner from "./SRAlertBanner";
 import AliasGate from "./AliasGate";
 import { base44 } from "@/api/base44Client";
 
@@ -68,6 +69,7 @@ export default function Layout() {
   return (
     <div className="min-h-screen relative overflow-hidden">
       {needsAlias && <AliasGate userEmail={userEmail} onComplete={() => setNeedsAlias(false)} />}
+      <SRAlertBanner />
       <AnimatedBackground />
 
       <div className="fixed top-[-20%] left-[-10%] w-[500px] h-[500px] rounded-full bg-purple-900/20 blur-[120px] pointer-events-none z-0" />

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from "react";
+import { srEventBus } from "../components/SRAlertBanner";
 import { base44 } from "@/api/base44Client";
 import { motion, AnimatePresence } from "framer-motion";
 import { Maximize2, Minimize2, Eye, EyeOff, RefreshCw } from "lucide-react";
@@ -364,6 +365,7 @@ export default function SynesthesiaEngine() {
   const [dominantFreq, setDominantFreq] = useState("healing");
   const [palette,      setPalette]      = useState(FREQ_PALETTES.healing);
   const [loading,      setLoading]      = useState(true);
+  const [autoTune,     setAutoTune]     = useState(false);
 
   // Fetch dominant frequency from collective
   const fetchField = useCallback(async () => {
@@ -432,6 +434,31 @@ export default function SynesthesiaEngine() {
     return () => clearInterval(id);
   }, [fetchField]);
 
+  // Auto-Tune: subscribe to SR event bus and react to surges
+  useEffect(() => {
+    if (!autoTune) return;
+    const unsub = srEventBus.subscribe(sr => {
+      if (!rendererRef.current) return;
+      // Map SR mode to a high-energy frequency channel
+      const surgeChannels = ["awakening", "transformation", "vision", "creation"];
+      if (sr.isSurge) {
+        const freq = surgeChannels[sr.mode % surgeChannels.length];
+        setDominantFreq(freq);
+        setPalette(FREQ_PALETTES[freq]);
+        rendererRef.current.setPalette(freq);
+      }
+      // Always push latest SR data to renderer
+      rendererRef.current.setLiveData({
+        sr_mode:   sr.mode,
+        sr_hz:     sr.hz,
+        sr_power:  sr.power,
+        ulf_power: liveData.ulf_power,
+        gci_index: liveData.gci_index,
+      });
+    });
+    return () => unsub();
+  }, [autoTune, liveData]);
+
   const handleFreqClick = (freq) => {
     setDominantFreq(freq);
     setPalette(FREQ_PALETTES[freq]);
@@ -472,6 +499,17 @@ export default function SynesthesiaEngine() {
               <button onClick={handleRefresh}
                 className="p-2 rounded-xl bg-card/30 border border-border/30 text-muted-foreground hover:text-foreground transition-colors">
                 <RefreshCw className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => setAutoTune(a => !a)}
+                title="Auto-Tune to SR peak events"
+                className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-body border transition-all ${
+                  autoTune
+                    ? "bg-amber-500/20 border-amber-500/40 text-amber-300"
+                    : "bg-card/30 border-border/30 text-muted-foreground hover:text-foreground"
+                }`}>
+                <span className={`w-1.5 h-1.5 rounded-full ${autoTune ? "bg-amber-400 animate-pulse" : "bg-muted-foreground"}`} />
+                Auto-Tune
               </button>
               <button onClick={() => setHud(h => !h)}
                 className="p-2 rounded-xl bg-card/30 border border-border/30 text-muted-foreground hover:text-foreground transition-colors">

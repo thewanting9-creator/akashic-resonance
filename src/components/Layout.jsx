@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { Sparkles, Plus, Globe, User, Menu, X, Heart, Headphones, BarChart2, GitBranch, MoreHorizontal, Users, BookOpen, GitCompare, Network, FlaskConical, Activity, Waves } from "lucide-react";
+import { Sparkles, Plus, Globe, User, Menu, X, Heart, Headphones, BarChart2, GitBranch, MoreHorizontal, Users, BookOpen, GitCompare, Network, FlaskConical, Activity, Waves, Clock } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedBackground from "./AnimatedBackground";
@@ -28,6 +28,7 @@ const SECONDARY_NAV = [
   { path: "/resonance-comparison",label: "Comparison",        icon: GitCompare },
   { path: "/hidden-architecture", label: "Architecture",      icon: GitBranch },
   { path: "/contribute",          label: "Contribute",        icon: Plus },
+  { path: "/resonance-4d",        label: "4D Archive",        icon: Clock },
 ];
 
 export default function Layout() {

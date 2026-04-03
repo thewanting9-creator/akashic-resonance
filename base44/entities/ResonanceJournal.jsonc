@@ -1,0 +1,85 @@
+{
+  "name": "ResonanceJournal",
+  "type": "object",
+  "properties": {
+    "session_title": {
+      "type": "string",
+      "description": "Optional title for this session log"
+    },
+    "mood_before": {
+      "type": "string",
+      "enum": [
+        "calm",
+        "creative",
+        "focused",
+        "inspired",
+        "anxious",
+        "flow",
+        "grateful",
+        "insight",
+        "heightened"
+      ]
+    },
+    "mood_after": {
+      "type": "string",
+      "enum": [
+        "calm",
+        "creative",
+        "focused",
+        "inspired",
+        "anxious",
+        "flow",
+        "grateful",
+        "insight",
+        "heightened"
+      ]
+    },
+    "session_type": {
+      "type": "string",
+      "enum": [
+        "binaural",
+        "meditation",
+        "inscription",
+        "circle",
+        "free"
+      ],
+      "description": "What kind of session was logged"
+    },
+    "binaural_beat_hz": {
+      "type": "number",
+      "description": "Beat frequency used if binaural session"
+    },
+    "binaural_carrier_hz": {
+      "type": "number"
+    },
+    "schumann_mode_during": {
+      "type": "number",
+      "description": "Estimated Schumann mode active during session"
+    },
+    "echo_count_during": {
+      "type": "number",
+      "description": "Number of users in matching state during session"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Personal observations or reflections"
+    },
+    "resonance_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Overall resonance alignment score for this session"
+    },
+    "duration_minutes": {
+      "type": "number"
+    },
+    "ai_pattern_note": {
+      "type": "string",
+      "description": "AI-generated correlation observation for this entry"
+    }
+  },
+  "required": [
+    "mood_before",
+    "session_type"
+  ]
+}

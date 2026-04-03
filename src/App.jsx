@@ -18,6 +18,8 @@ import ResonanceComparison from './pages/ResonanceComparison';
 import ResonanceNetwork from './pages/ResonanceNetwork';
 import MyResonance from './pages/MyResonance';
 import BinauralStudio from './pages/BinauralStudio';
+import PulseCheckIn from './pages/PulseCheckIn';
+import IntentionCircles from './pages/IntentionCircles';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -58,6 +60,8 @@ const AuthenticatedApp = () => {
         <Route path="/resonance-network" element={<ResonanceNetwork />} />
         <Route path="/my-resonance" element={<MyResonance />} />
         <Route path="/binaural-studio" element={<BinauralStudio />} />
+        <Route path="/pulse" element={<PulseCheckIn />} />
+        <Route path="/intention-circles" element={<IntentionCircles />} />
         <Route path="*" element={<PageNotFound />} />
       </Route>
     </Routes>

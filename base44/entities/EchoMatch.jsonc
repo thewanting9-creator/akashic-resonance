@@ -1,0 +1,45 @@
+{
+  "name": "EchoMatch",
+  "type": "object",
+  "properties": {
+    "matched_mood": {
+      "type": "string",
+      "description": "The mood/emotion state that was matched"
+    },
+    "matched_frequency": {
+      "type": "string",
+      "description": "The frequency channel that matched"
+    },
+    "echo_count": {
+      "type": "number",
+      "description": "Number of users in this state at snapshot time"
+    },
+    "schumann_mode": {
+      "type": "number",
+      "description": "Active Schumann mode at time of echo"
+    },
+    "schumann_hz": {
+      "type": "number",
+      "description": "Estimated SR frequency Hz at snapshot"
+    },
+    "collective_alignment_pct": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Percentage of active users in aligned state"
+    },
+    "snapshot_timestamp": {
+      "type": "string",
+      "description": "ISO timestamp of this echo snapshot"
+    },
+    "pulse_checkin_id": {
+      "type": "string",
+      "description": "Reference to the triggering PulseCheckIn record"
+    }
+  },
+  "required": [
+    "matched_mood",
+    "echo_count",
+    "snapshot_timestamp"
+  ]
+}

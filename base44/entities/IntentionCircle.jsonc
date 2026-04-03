@@ -1,0 +1,89 @@
+{
+  "name": "IntentionCircle",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Name of the intention circle"
+    },
+    "intention": {
+      "type": "string",
+      "description": "The shared focus or intention for this circle"
+    },
+    "frequency": {
+      "type": "string",
+      "enum": [
+        "unity",
+        "creation",
+        "transformation",
+        "healing",
+        "awakening",
+        "remembrance",
+        "vision",
+        "connection"
+      ]
+    },
+    "mood_tag": {
+      "type": "string",
+      "enum": [
+        "calm",
+        "creative",
+        "focused",
+        "inspired",
+        "flow",
+        "grateful",
+        "insight",
+        "heightened"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "closed"
+      ],
+      "default": "active"
+    },
+    "participant_count": {
+      "type": "number",
+      "default": 1,
+      "description": "Current number of active participants"
+    },
+    "schumann_mode_target": {
+      "type": "number",
+      "description": "Target Schumann mode this circle is aligned to (1-8)"
+    },
+    "duration_minutes": {
+      "type": "number",
+      "default": 20,
+      "description": "Intended session length in minutes"
+    },
+    "host_alias": {
+      "type": "string",
+      "description": "Display alias of the circle creator"
+    },
+    "messages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "alias": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "ts": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Live anonymous messages in the circle"
+    }
+  },
+  "required": [
+    "title",
+    "intention",
+    "frequency"
+  ]
+}

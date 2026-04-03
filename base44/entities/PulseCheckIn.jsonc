@@ -1,0 +1,80 @@
+{
+  "name": "PulseCheckIn",
+  "type": "object",
+  "properties": {
+    "mood_tag": {
+      "type": "string",
+      "enum": [
+        "calm",
+        "creative",
+        "focused",
+        "inspired",
+        "anxious",
+        "flow",
+        "grateful",
+        "insight",
+        "heightened"
+      ],
+      "description": "Quick mood state at time of check-in"
+    },
+    "thought_fragment": {
+      "type": "string",
+      "description": "Optional short thought or intention (max 140 chars)"
+    },
+    "emotion": {
+      "type": "string",
+      "enum": [
+        "love",
+        "wonder",
+        "peace",
+        "joy",
+        "gratitude",
+        "clarity",
+        "longing",
+        "awe",
+        "compassion",
+        "transcendence"
+      ]
+    },
+    "frequency": {
+      "type": "string",
+      "enum": [
+        "unity",
+        "creation",
+        "transformation",
+        "healing",
+        "awakening",
+        "remembrance",
+        "vision",
+        "connection"
+      ]
+    },
+    "schumann_mode_estimate": {
+      "type": "number",
+      "description": "Estimated active Schumann mode at check-in (1-8)"
+    },
+    "resonance_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "AI-computed alignment score vs current collective field"
+    },
+    "echo_count": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of users in matching state at time of check-in"
+    },
+    "session_type": {
+      "type": "string",
+      "enum": [
+        "solo",
+        "circle",
+        "open"
+      ],
+      "default": "solo"
+    }
+  },
+  "required": [
+    "mood_tag"
+  ]
+}

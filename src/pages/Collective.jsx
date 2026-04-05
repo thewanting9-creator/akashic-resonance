@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Globe, Filter } from "lucide-react";
 import RecordCard from "../components/RecordCard";
 import { Button } from "@/components/ui/button";
+import PullToRefresh from "../components/PullToRefresh";
 
 const FREQUENCIES = [
   "all", "unity", "creation", "transformation", "healing",
@@ -84,6 +85,7 @@ export default function Collective() {
         </div>
 
         {/* Records */}
+        <PullToRefresh onRefresh={loadRecords}>
         {loading ? (
           <div className="flex items-center justify-center h-64">
             <div className="w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
@@ -106,6 +108,7 @@ export default function Collective() {
             ))}
           </div>
         )}
+        </PullToRefresh>
       </div>
     </div>
   );

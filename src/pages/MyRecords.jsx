@@ -1,29 +1,32 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { base44 } from "@/api/base44Client";
 import { motion } from "framer-motion";
 import { User, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import RecordCard from "../components/RecordCard";
+import PullToRefresh from "../components/PullToRefresh";
 
 export default function MyRecords() {
   const [records, setRecords] = useState([]);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    const load = async () => {
-      const me = await base44.auth.me();
-      setUser(me);
-      const data = await base44.entities.ResonanceRecord.filter(
-        { created_by: me.email },
-        "-created_date",
-        50
-      );
-      setRecords(data);
-      setLoading(false);
-    };
-    load();
+  const load = useCallback(async () => {
+    setLoading(true);
+    const me = await base44.auth.me();
+    setUser(me);
+    const data = await base44.entities.ResonanceRecord.filter(
+      { created_by: me.email },
+      "-created_date",
+      50
+    );
+    setRecords(data);
+    setLoading(false);
   }, []);
+
+  useEffect(() => {
+    load();
+  }, [load]);
 
   const totalEchoes = records.reduce((sum, r) => sum + (r.echoes || 0), 0);
 
@@ -77,6 +80,7 @@ export default function MyRecords() {
         )}
 
         {/* Records */}
+        <PullToRefresh onRefresh={load}>
         {loading ? (
           <div className="flex items-center justify-center h-64">
             <div className="w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
@@ -104,6 +108,7 @@ export default function MyRecords() {
             ))}
           </div>
         )}
+        </PullToRefresh>
       </div>
     </div>
   );

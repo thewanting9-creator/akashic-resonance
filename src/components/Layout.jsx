@@ -51,6 +51,11 @@ export default function Layout() {
   const isChildRoute = location.pathname !== "/";
 
   const handleDeleteAccount = async () => {
+    // Delete participant record before logging out
+    const existing = await base44.entities.Participant.filter({ user_email: userEmail }, "-created_date", 1);
+    if (existing.length > 0) {
+      await base44.entities.Participant.delete(existing[0].id);
+    }
     await base44.auth.logout();
   };
 

@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { base44 } from "@/api/base44Client";
+import MobileSelect from "../components/MobileSelect";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Feather, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+
 import { Slider } from "@/components/ui/slider";
 
 const EMOTIONS = [
@@ -84,42 +85,26 @@ export default function Inscribe() {
               <label className="text-xs font-body text-muted-foreground uppercase tracking-wider">
                 Emotion
               </label>
-              <Select
+              <MobileSelect
                 value={form.emotion}
                 onValueChange={(v) => setForm({ ...form, emotion: v })}
-              >
-                <SelectTrigger className="bg-card/40 backdrop-blur-sm border-border/40 capitalize">
-                  <SelectValue placeholder="Select..." />
-                </SelectTrigger>
-                <SelectContent>
-                  {EMOTIONS.map((e) => (
-                    <SelectItem key={e} value={e} className="capitalize">
-                      {e}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+                placeholder="Select..."
+                options={EMOTIONS.map(e => ({ value: e, label: e }))}
+                triggerClassName="bg-card/40 backdrop-blur-sm border-border/40 rounded-md px-3 h-10 text-sm"
+              />
             </div>
 
             <div className="space-y-2">
               <label className="text-xs font-body text-muted-foreground uppercase tracking-wider">
                 Frequency
               </label>
-              <Select
+              <MobileSelect
                 value={form.frequency}
                 onValueChange={(v) => setForm({ ...form, frequency: v })}
-              >
-                <SelectTrigger className="bg-card/40 backdrop-blur-sm border-border/40 capitalize">
-                  <SelectValue placeholder="Select..." />
-                </SelectTrigger>
-                <SelectContent>
-                  {FREQUENCIES.map((f) => (
-                    <SelectItem key={f} value={f} className="capitalize">
-                      {f}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+                placeholder="Select..."
+                options={FREQUENCIES.map(f => ({ value: f, label: f }))}
+                triggerClassName="bg-card/40 backdrop-blur-sm border-border/40 rounded-md px-3 h-10 text-sm"
+              />
             </div>
           </div>
 

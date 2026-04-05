@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Waves } from "lucide-react";
 import FrequencyBadge from "./FrequencyBadge";
@@ -6,9 +7,12 @@ import { base44 } from "@/api/base44Client";
 import moment from "moment";
 
 export default function RecordCard({ record, index = 0, onEcho }) {
+  const [localEchoes, setLocalEchoes] = useState(record.echoes || 0);
+
   const handleEcho = async () => {
+    setLocalEchoes(e => e + 1);
     await base44.entities.ResonanceRecord.update(record.id, {
-      echoes: (record.echoes || 0) + 1,
+      echoes: localEchoes + 1,
     });
     if (onEcho) onEcho(record.id);
   };
@@ -34,7 +38,7 @@ export default function RecordCard({ record, index = 0, onEcho }) {
         </div>
 
         {/* Thought */}
-        <p className="font-heading text-lg leading-relaxed text-foreground/90 mb-3">
+        <p className="font-heading text-lg leading-relaxed text-foreground/90 mb-3 select-text">
           "{record.thought}"
         </p>
 
@@ -74,7 +78,7 @@ export default function RecordCard({ record, index = 0, onEcho }) {
               className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors group/echo"
             >
               <Waves className="w-3.5 h-3.5 group-hover/echo:animate-pulse" />
-              <span>{record.echoes || 0}</span>
+              <span>{localEchoes}</span>
             </button>
           </div>
         </div>

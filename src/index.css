@@ -88,6 +88,13 @@
   body {
     @apply bg-background text-foreground;
     overscroll-behavior-y: none;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  p, .selectable {
+    user-select: text;
+    -webkit-user-select: text;
   }
 }
 

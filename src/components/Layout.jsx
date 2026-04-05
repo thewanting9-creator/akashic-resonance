@@ -1,5 +1,5 @@
-import { Outlet, Link, useLocation } from "react-router-dom";
-import { Sparkles, Plus, Globe, User, Menu, X, Heart, Headphones, BarChart2, GitBranch, MoreHorizontal, Users, BookOpen, GitCompare, Network, FlaskConical, Activity, Waves, Clock, Wind, Award, Radio, Palette, MapPin } from "lucide-react";
+import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
+import { Sparkles, Plus, Globe, User, Menu, X, Heart, Headphones, BarChart2, GitBranch, MoreHorizontal, Users, BookOpen, GitCompare, Network, FlaskConical, Activity, Waves, Clock, Wind, Award, Radio, Palette, MapPin, ChevronLeft, Trash2 } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedBackground from "./AnimatedBackground";
@@ -40,11 +40,19 @@ const SECONDARY_NAV = [
 
 export default function Layout() {
   const location   = useLocation();
+  const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [moreOpen,   setMoreOpen]   = useState(false);
   const [needsAlias, setNeedsAlias] = useState(false);
   const [userEmail,  setUserEmail]  = useState("");
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const moreRef = useRef(null);
+
+  const isChildRoute = location.pathname !== "/";
+
+  const handleDeleteAccount = async () => {
+    await base44.auth.logout();
+  };
 
   useEffect(() => {
     const check = async () => {
@@ -77,8 +85,15 @@ export default function Layout() {
       <div className="fixed top-[40%] right-[20%] w-[300px] h-[300px] rounded-full bg-amber-900/10 blur-[80px] pointer-events-none z-0" />
 
       {/* Top nav */}
-      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-background/40 border-b border-border/30">
+      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-background/40 border-b border-border/30" style={{ paddingTop: "env(safe-area-inset-top)" }}>
         <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between gap-2">
+
+          {/* Back button — child routes only */}
+          {isChildRoute && (
+            <button onClick={() => navigate(-1)} className="select-none flex-shrink-0 p-1.5 rounded-full text-muted-foreground hover:text-foreground transition-colors">
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+          )}
 
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 flex-shrink-0">
@@ -94,7 +109,7 @@ export default function Layout() {
               const active = isActive(item.path);
               return (
                 <Link key={item.path} to={item.path}
-                  className={`relative px-3 py-1.5 rounded-full text-sm font-body transition-all duration-300 flex items-center gap-1.5 ${
+                  className={`select-none relative px-3 py-1.5 rounded-full text-sm font-body transition-all duration-300 flex items-center gap-1.5 ${
                     active ? "text-primary" : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
@@ -156,8 +171,17 @@ export default function Layout() {
             </div>
           </nav>
 
+          {/* Delete account button — desktop */}
+          <button
+            onClick={() => setShowDeleteConfirm(true)}
+            className="select-none hidden md:flex items-center gap-1 text-muted-foreground/40 hover:text-destructive transition-colors text-xs font-body flex-shrink-0"
+            title="Delete account"
+          >
+            <Trash2 className="w-3.5 h-3.5" />
+          </button>
+
           {/* Mobile menu toggle */}
-          <button className="md:hidden text-foreground p-2 ml-auto" onClick={() => setMobileOpen(!mobileOpen)}>
+          <button className="select-none md:hidden text-foreground p-2 ml-auto" onClick={() => setMobileOpen(!mobileOpen)}>
             {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
@@ -206,8 +230,71 @@ export default function Layout() {
         </AnimatePresence>
       </header>
 
-      <main className="relative z-10 pt-14 min-h-screen">
-        <Outlet />
+      {/* Mobile bottom nav */}
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-t border-border/30 flex items-center justify-around"
+        style={{ paddingBottom: "env(safe-area-inset-bottom)" }}>
+        {PRIMARY_NAV.map(item => {
+          const active = isActive(item.path);
+          return (
+            <Link key={item.path} to={item.path}
+              className={`select-none flex flex-col items-center gap-0.5 px-3 py-2 transition-all ${
+                active ? "text-primary" : "text-muted-foreground"
+              }`}>
+              <item.icon className="w-5 h-5" />
+              <span className="text-[9px] font-body">{item.label}</span>
+            </Link>
+          );
+        })}
+        <button
+          onClick={() => setShowDeleteConfirm(true)}
+          className="select-none flex flex-col items-center gap-0.5 px-3 py-2 text-muted-foreground/40 hover:text-destructive transition-colors">
+          <User className="w-5 h-5" />
+          <span className="text-[9px] font-body">Account</span>
+        </button>
+      </nav>
+
+      {/* Delete account confirmation */}
+      <AnimatePresence>
+        {showDeleteConfirm && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[200] flex items-center justify-center bg-black/60 backdrop-blur-sm px-6">
+            <motion.div initial={{ scale: 0.92, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.92, opacity: 0 }}
+              className="bg-card border border-border/40 rounded-2xl p-6 max-w-sm w-full shadow-2xl">
+              <div className="flex items-center gap-2 mb-2">
+                <Trash2 className="w-4 h-4 text-destructive" />
+                <h3 className="font-heading text-lg">Delete Account</h3>
+              </div>
+              <p className="text-xs font-body text-muted-foreground mb-5 leading-relaxed">
+                This will permanently remove your participant profile and all associated data from the collective field. This cannot be undone.
+              </p>
+              <div className="flex gap-2">
+                <button onClick={() => setShowDeleteConfirm(false)}
+                  className="select-none flex-1 py-2 rounded-full border border-border/40 text-xs font-body text-muted-foreground hover:text-foreground transition-all">
+                  Cancel
+                </button>
+                <button onClick={handleDeleteAccount}
+                  className="select-none flex-1 py-2 rounded-full bg-destructive/20 border border-destructive/40 text-destructive text-xs font-body hover:bg-destructive/30 transition-all">
+                  Delete & Sign Out
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <main className="relative z-10 pt-14 pb-16 md:pb-0 min-h-screen">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={location.pathname}
+            initial={{ opacity: 0, x: 12 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -12 }}
+            transition={{ duration: 0.18 }}
+            className="min-h-screen"
+          >
+            <Outlet />
+          </motion.div>
+        </AnimatePresence>
       </main>
     </div>
   );

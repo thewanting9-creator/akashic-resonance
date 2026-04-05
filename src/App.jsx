@@ -1,3 +1,4 @@
+import React, { Suspense, lazy } from 'react';
 import { Toaster } from "@/components/ui/toaster"
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClientInstance } from '@/lib/query-client'
@@ -6,31 +7,38 @@ import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import Layout from './components/Layout';
-import Home from './pages/Home';
-import Inscribe from './pages/Inscribe';
-import Collective from './pages/Collective';
-import MyRecords from './pages/MyRecords';
-import HiddenArchitecture from './pages/HiddenArchitecture';
-import DeveloperGateway from './pages/DeveloperGateway';
-import ResonanceDashboard from './pages/ResonanceDashboard';
-import ResonanceField from './pages/ResonanceField';
-import ResonanceComparison from './pages/ResonanceComparison';
-import ResonanceNetwork from './pages/ResonanceNetwork';
-import MyResonance from './pages/MyResonance';
-import BinauralStudio from './pages/BinauralStudio';
-import PulseCheckIn from './pages/PulseCheckIn';
-import FirstPulse from './pages/FirstPulse';
-import AstroResonanceLab from './pages/AstroResonanceLab';
-import IntentionCircles from './pages/IntentionCircles';
-import ResonanceGlobe3D from './pages/ResonanceGlobe3D';
-import FrequencyMonitor from './pages/FrequencyMonitor';
-import Resonance4D from './pages/Resonance4D';
-import AtmosphericComposer from './pages/AtmosphericComposer';
-import ResonanceMastery from './pages/ResonanceMastery';
-import CollectiveFieldRadio from './pages/CollectiveFieldRadio';
-import SynesthesiaEngine from './pages/SynesthesiaEngine';
-import ResonanceHotspotMap from './pages/ResonanceHotspotMap';
-import HarmonyNetwork from './pages/HarmonyNetwork';
+
+const Home = lazy(() => import('./pages/Home'));
+const Inscribe = lazy(() => import('./pages/Inscribe'));
+const Collective = lazy(() => import('./pages/Collective'));
+const MyRecords = lazy(() => import('./pages/MyRecords'));
+const HiddenArchitecture = lazy(() => import('./pages/HiddenArchitecture'));
+const DeveloperGateway = lazy(() => import('./pages/DeveloperGateway'));
+const ResonanceDashboard = lazy(() => import('./pages/ResonanceDashboard'));
+const ResonanceField = lazy(() => import('./pages/ResonanceField'));
+const ResonanceComparison = lazy(() => import('./pages/ResonanceComparison'));
+const ResonanceNetwork = lazy(() => import('./pages/ResonanceNetwork'));
+const MyResonance = lazy(() => import('./pages/MyResonance'));
+const BinauralStudio = lazy(() => import('./pages/BinauralStudio'));
+const PulseCheckIn = lazy(() => import('./pages/PulseCheckIn'));
+const FirstPulse = lazy(() => import('./pages/FirstPulse'));
+const AstroResonanceLab = lazy(() => import('./pages/AstroResonanceLab'));
+const IntentionCircles = lazy(() => import('./pages/IntentionCircles'));
+const ResonanceGlobe3D = lazy(() => import('./pages/ResonanceGlobe3D'));
+const FrequencyMonitor = lazy(() => import('./pages/FrequencyMonitor'));
+const Resonance4D = lazy(() => import('./pages/Resonance4D'));
+const AtmosphericComposer = lazy(() => import('./pages/AtmosphericComposer'));
+const ResonanceMastery = lazy(() => import('./pages/ResonanceMastery'));
+const CollectiveFieldRadio = lazy(() => import('./pages/CollectiveFieldRadio'));
+const SynesthesiaEngine = lazy(() => import('./pages/SynesthesiaEngine'));
+const ResonanceHotspotMap = lazy(() => import('./pages/ResonanceHotspotMap'));
+const HarmonyNetwork = lazy(() => import('./pages/HarmonyNetwork'));
+
+const PageFallback = () => (
+  <div className="fixed inset-0 flex items-center justify-center">
+    <div className="w-8 h-8 border-4 border-border border-t-primary rounded-full animate-spin" />
+  </div>
+);
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -57,6 +65,7 @@ const AuthenticatedApp = () => {
 
   // Render the main app
   return (
+    <Suspense fallback={<PageFallback />}>
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
@@ -87,6 +96,7 @@ const AuthenticatedApp = () => {
         <Route path="*" element={<PageNotFound />} />
       </Route>
     </Routes>
+    </Suspense>
   );
 };
 

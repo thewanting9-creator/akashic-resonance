@@ -95,7 +95,11 @@ export default function Layout() {
 
           {/* Back button — child routes only */}
           {isChildRoute && (
-            <button onClick={() => navigate(-1)} className="select-none flex-shrink-0 p-1.5 rounded-full text-muted-foreground hover:text-foreground transition-colors">
+            <button
+              onClick={() => navigate(-1)}
+              aria-label="Go back"
+              className="select-none flex-shrink-0 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full text-muted-foreground hover:text-foreground transition-colors"
+            >
               <ChevronLeft className="w-5 h-5" />
             </button>
           )}
@@ -186,7 +190,12 @@ export default function Layout() {
           </button>
 
           {/* Mobile menu toggle */}
-          <button className="select-none md:hidden text-foreground p-2 ml-auto" onClick={() => setMobileOpen(!mobileOpen)}>
+          <button
+            className="select-none md:hidden text-foreground p-2 ml-auto min-w-[44px] min-h-[44px] flex items-center justify-center"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
+          >
             {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
@@ -236,15 +245,24 @@ export default function Layout() {
       </header>
 
       {/* Mobile bottom nav */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-t border-border/30 flex items-center justify-around"
-        style={{ paddingBottom: "env(safe-area-inset-bottom)" }}>
+      <nav
+        className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-t border-border/30 flex items-center justify-around"
+        style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
+        aria-label="Main navigation"
+      >
         {PRIMARY_NAV.map(item => {
           const active = isActive(item.path);
           return (
-            <Link key={item.path} to={item.path}
-              className={`select-none flex flex-col items-center gap-0.5 px-3 py-2 transition-all ${
+            <Link
+              key={item.path}
+              to={item.path}
+              aria-label={item.label}
+              aria-current={active ? "page" : undefined}
+              onClick={() => { if (active) navigate(item.path, { replace: true }); }}
+              className={`select-none flex flex-col items-center gap-0.5 min-w-[44px] min-h-[44px] px-3 py-2 justify-center transition-all ${
                 active ? "text-primary" : "text-muted-foreground"
-              }`}>
+              }`}
+            >
               <item.icon className="w-5 h-5" />
               <span className="text-[9px] font-body">{item.label}</span>
             </Link>
@@ -252,7 +270,8 @@ export default function Layout() {
         })}
         <button
           onClick={() => setShowDeleteConfirm(true)}
-          className="select-none flex flex-col items-center gap-0.5 px-3 py-2 text-muted-foreground/40 hover:text-destructive transition-colors">
+          aria-label="Account settings"
+          className="select-none flex flex-col items-center gap-0.5 min-w-[44px] min-h-[44px] px-3 py-2 justify-center text-muted-foreground/40 hover:text-destructive transition-colors">
           <User className="w-5 h-5" />
           <span className="text-[9px] font-body">Account</span>
         </button>

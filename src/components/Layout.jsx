@@ -48,6 +48,19 @@ export default function Layout() {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const moreRef = useRef(null);
 
+  // Per-tab history: remembers the last visited path under each primary tab
+  const tabHistoryRef = useRef({});
+
+  // Update the active tab's remembered path whenever location changes
+  useEffect(() => {
+    const activeTab = PRIMARY_NAV.find(item =>
+      item.path === "/" ? location.pathname === "/" : location.pathname.startsWith(item.path)
+    );
+    if (activeTab) {
+      tabHistoryRef.current[activeTab.path] = location.pathname + location.search;
+    }
+  }, [location]);
+
   const isChildRoute = location.pathname !== "/";
 
   const handleDeleteAccount = async () => {
@@ -258,7 +271,17 @@ export default function Layout() {
               to={item.path}
               aria-label={item.label}
               aria-current={active ? "page" : undefined}
-              onClick={() => { if (active) navigate(item.path, { replace: true }); }}
+              onClick={() => {
+                if (active) {
+                  // Re-tapping active tab: reset to root
+                  tabHistoryRef.current[item.path] = item.path;
+                  navigate(item.path, { replace: true });
+                } else {
+                  // Switching tabs: restore last visited path or fall back to root
+                  const dest = tabHistoryRef.current[item.path] || item.path;
+                  navigate(dest);
+                }
+              }}
               className={`select-none flex flex-col items-center gap-0.5 min-w-[44px] min-h-[44px] px-3 py-2 justify-center transition-all ${
                 active ? "text-primary" : "text-muted-foreground"
               }`}

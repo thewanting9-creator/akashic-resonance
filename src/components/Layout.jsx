@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
-import { Sparkles, Plus, Globe, User, Menu, X, Heart, Headphones, BarChart2, GitBranch, MoreHorizontal, Users, BookOpen, GitCompare, Network, FlaskConical, Activity, Waves, Clock, Wind, Award, Radio, Palette, MapPin, ChevronLeft, Trash2, Shield } from "lucide-react";
+import { Sparkles, Plus, Globe, User, Menu, X, Heart, Headphones, BarChart2, GitBranch, MoreHorizontal, Users, BookOpen, GitCompare, Network, FlaskConical, Activity, Waves, Clock, Wind, Award, Radio, Palette, MapPin, ChevronLeft, Trash2, Shield, Layers } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedBackground from "./AnimatedBackground";
@@ -36,6 +36,7 @@ const SECONDARY_NAV = [
   { path: "/synesthesia",          label: "Synesthesia",       icon: Palette },
   { path: "/hotspot-map",          label: "Hotspot Map",       icon: MapPin },
   { path: "/harmony-network",      label: "Harmony Network",  icon: GitBranch },
+  { path: "/dimensional-matrix",      label: "15D Time Matrix",   icon: Layers },
   { path: "/privacy-policy",         label: "Privacy Policy",    icon: Shield },
 ];
 

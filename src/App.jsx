@@ -35,6 +35,7 @@ const ResonanceHotspotMap = lazy(() => import('./pages/ResonanceHotspotMap'));
 const HarmonyNetwork = lazy(() => import('./pages/HarmonyNetwork'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const DimensionalMatrix = lazy(() => import('./pages/DimensionalMatrix'));
+const TimeMatrix = lazy(() => import('./pages/TimeMatrix'));
 
 const PageFallback = () => (
   <div className="fixed inset-0 flex items-center justify-center">
@@ -96,6 +97,7 @@ const AuthenticatedApp = () => {
         <Route path="/harmony-network" element={<HarmonyNetwork />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/dimensional-matrix" element={<DimensionalMatrix />} />
+        <Route path="/time-matrix" element={<TimeMatrix />} />
         <Route path="/astro-lab" element={<AstroResonanceLab />} />
         <Route path="*" element={<PageNotFound />} />
       </Route>

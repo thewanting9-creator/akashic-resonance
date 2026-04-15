@@ -36,7 +36,8 @@ const SECONDARY_NAV = [
   { path: "/synesthesia",          label: "Synesthesia",       icon: Palette },
   { path: "/hotspot-map",          label: "Hotspot Map",       icon: MapPin },
   { path: "/harmony-network",      label: "Harmony Network",  icon: GitBranch },
-  { path: "/dimensional-matrix",      label: "15D Time Matrix",   icon: Layers },
+  { path: "/time-matrix",              label: "Time Matrix",       icon: Layers },
+  { path: "/dimensional-matrix",      label: "15D Reference",     icon: Layers },
   { path: "/privacy-policy",         label: "Privacy Policy",    icon: Shield },
 ];
 

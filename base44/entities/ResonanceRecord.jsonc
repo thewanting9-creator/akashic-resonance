@@ -1,0 +1,60 @@
+{
+  "name": "ResonanceRecord",
+  "type": "object",
+  "properties": {
+    "thought": {
+      "type": "string",
+      "description": "The core thought or insight being recorded"
+    },
+    "emotion": {
+      "type": "string",
+      "enum": [
+        "love",
+        "wonder",
+        "peace",
+        "joy",
+        "gratitude",
+        "clarity",
+        "longing",
+        "awe",
+        "compassion",
+        "transcendence"
+      ],
+      "description": "The emotional resonance of this record"
+    },
+    "frequency": {
+      "type": "string",
+      "enum": [
+        "unity",
+        "creation",
+        "transformation",
+        "healing",
+        "awakening",
+        "remembrance",
+        "vision",
+        "connection"
+      ],
+      "description": "The frequency channel of this resonance"
+    },
+    "intention": {
+      "type": "string",
+      "description": "The intention behind this record"
+    },
+    "depth": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 7,
+      "description": "Depth level of the resonance (1-7 chakra layers)"
+    },
+    "echoes": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of times others have resonated with this record"
+    }
+  },
+  "required": [
+    "thought",
+    "emotion",
+    "frequency"
+  ]
+}

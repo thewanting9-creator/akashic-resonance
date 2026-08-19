@@ -1,0 +1,52 @@
+{
+  "name": "DeveloperApplication",
+  "type": "object",
+  "properties": {
+    "applicant_email": {
+      "type": "string"
+    },
+    "applicant_name": {
+      "type": "string"
+    },
+    "reason": {
+      "type": "string",
+      "description": "Why they wish to contribute to the architecture"
+    },
+    "background": {
+      "type": "string",
+      "description": "Relevant background or experience"
+    },
+    "intention": {
+      "type": "string",
+      "description": "What they intend to contribute"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "approved",
+        "rejected",
+        "removed"
+      ],
+      "default": "pending"
+    },
+    "ai_screening": {
+      "type": "string",
+      "description": "AI pre-screening analysis"
+    },
+    "reviewed_at": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "applicant_email",
+    "applicant_name",
+    "reason",
+    "intention"
+  ],
+  "rls": {
+    "create": {
+      "created_by": "{{user.email}}"
+    }
+  }
+}
